@@ -1,0 +1,29 @@
+.or p {
+  z-index: 2;
+  
+  background-color: #efecf2;
+  padding: 0 4px;
+}
+.boxes {
+  margin-top: -5px;
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+}
+.boxes span {
+  height: 45px;
+  width: 60px;
+  border: 1px solid #fff;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  transition: all 0.5s;
+}
+.boxes span img {
+  width: 30px;
+  display: block;
+  cursor: pointer;
+  transition: all 0.5s;
+}
