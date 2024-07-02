@@ -7,8 +7,11 @@ const Sidebar = () => {
   return (
     <div className="sidebar">
     <Navbar />
+    <div style={{maxHeight:'70vh',overflowY:'auto'}}>
     <Search/>
     <Chats/>
+    </div>
+
   </div>
   );
 };

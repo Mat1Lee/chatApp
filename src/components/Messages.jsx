@@ -12,7 +12,6 @@ const Messages = () => {
   console.log(data?.chatId);
   // console.log(messageshook,'  messageshook')
   useEffect(() => {
-    console.log('có chạy')
     const unSub = onSnapshot(
       doc(db, "chats", data?.chatId),
       (doc) => {

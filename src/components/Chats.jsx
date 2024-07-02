@@ -38,7 +38,9 @@ const Chats = () => {
   };
 
   return (
-    <div className="chats">
+    <div className="chats"
+    style={{maxHeight: 'calc(100vh - 120px)'}}
+    >
       {chats?.map((chat, index) => (
         <div
           className={`${data?.user.uid === chat.uid ? 'active' : ''} userChat`.trim()}

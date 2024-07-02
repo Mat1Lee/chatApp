@@ -22,21 +22,33 @@ const Search = () => {
   const { currentUser } = useContext(AuthContext);
 
   const handleSearch = async () => {
+    if (!username.trim()) {
+      return;
+    }
+
     const q = query(
-      collection(db, "userChats"),
+      collection(db, "users"),
       where("displayName", "==", username)
     );
 
     try {
-      const querySnapshot = await getDocs(q);
-      querySnapshot.forEach((doc) => {
-        setUser(doc?.data());
-      });
+      const querySnapshot = await getDocs(q); 
+      if (querySnapshot.empty) {
+        setErr(true);
+        setUser(null);
+      } else {
+        setErr(false);
+        const userData = [];
+        querySnapshot.forEach((doc) => {
+          userData.push(doc.data());
+        });
+        setUser(userData.length > 0 ? userData[0] : null);
+      }
     } catch (err) {
+      console.log(err);
       setErr(true);
     }
   };
-
   const handleKey = (e) => {
     e.code === "Enter" && handleSearch();
   };
