@@ -16,26 +16,14 @@ import { db, storage } from "../firebase";
 import { v4 as uuid } from "uuid";
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 import formatRelative from "date-fns/esm/fp/formatRelative/index.js";
+import {formatDate} from "../helpers/index.js";
 const Input = () => {
   const [text, setText] = useState("");
   const [img, setImg] = useState(null);
   const [doc1,setDoc1] = useState('');
   const { currentUser } = useContext(AuthContext);
   const { data } = useContext(ChatContext);
-  console.log(data)
-
-const formatDate=(seconds)=>{
-  let formattedDate = '';
-
-if (seconds) {
-  formattedDate = formatRelative(new Date(seconds * 1000), new Date());
-
-  formattedDate =
-    formattedDate.charAt(0).toUpperCase() + formattedDate.slice(1);
-    
-} 
-return formattedDate;
-}
+  // console.log(data)
 
 const getChats = () => {
   const unsub = onSnapshot(doc(db, "chats", data.chatId), (doc) => {
@@ -54,7 +42,7 @@ const getChats = () => {
       const storageRef = ref(storage, uuid());
       
       const uploadTask = uploadBytesResumable(storageRef, img);
-        console.log(data.chatId);
+        // console.log(data.chatId);
       uploadTask.on(
         (error) => {
          
@@ -79,7 +67,7 @@ const getChats = () => {
    await updateDoc(doc(db, "chats", data?.chatId), {
         messages: arrayUnion({
           id: uuid(),
-          text,
+          text:text.trim(),
           senderId: currentUser.uid,
           date: formatDate(Timestamp.now()),
           photoURL:currentUser.photoURL,

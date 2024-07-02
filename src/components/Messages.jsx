@@ -3,22 +3,37 @@ import React, { useContext, useEffect, useState } from "react";
 import { ChatContext } from "../context/ChatContext";
 import { db } from "../firebase";
 import Message from "./Message";
+import { useChatMessages } from "../hook/message";
 
 const Messages = () => {
   const [messages, setMessages] = useState([]);
   const { data } = useContext(ChatContext);
- 
+  const { messageshook} = useChatMessages(data?.chatId);
+  console.log(data?.chatId);
+  // console.log(messageshook,'  messageshook')
   useEffect(() => {
-    const unSub = onSnapshot(doc(db, "chats", data.chatId), (doc) => {
-      doc.exists() && setMessages(doc.data().messages);
-     console.log(messages)
-    });
+    console.log('có chạy')
+    const unSub = onSnapshot(
+      doc(db, "chats", data?.chatId),
+      (doc) => {
+        if (doc.exists()) {
+          console.log(doc.data().messages, 'day là màn hình');
+          setMessages(doc.data().messages);
+        } else {
+          console.log('Document does not exist');
+          setMessages([]);
+        }
+      },
+      (error) => {
+        console.error('Error fetching document: ', error);
+      }
+    );
 
     return () => {
       unSub();
     };
-  }, [data.chatId]);
-  console.log(data.chatId);
+  }, [data]);
+  // console.log(data.chatId);
   
 
   return (
