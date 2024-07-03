@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 
-import Messages from "./Messages";
+// import Messages from "./Messages";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 import {faPhone,faVideo,faMagnifyingGlass} from '@fortawesome/free-solid-svg-icons';
@@ -21,7 +21,7 @@ const Chat = () => {
         
         
       </div>
-      <Messages />
+      {/* <Messages /> */}
       <Input/>
      
    

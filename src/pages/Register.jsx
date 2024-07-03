@@ -52,7 +52,7 @@ const Register = () => {
               id: res.user.uid,
                displayName,
               email,
-              photoURL: downloadURL,
+              photoURL: downloadURL??'',
             });
             navigate("/");console.log('setUser')
           } catch (err) {

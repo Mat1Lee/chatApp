@@ -22,7 +22,7 @@ import {
 import { db, storage } from "../firebase";
 import { v4 as uuid } from "uuid";
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
-import formatRelative from "date-fns/esm/fp/formatRelative/index.js";
+// import formatRelative from "date-fns/esm/fp/formatRelative/index.js";
 import { formatDate } from "../helpers/index.js";
 const Input = () => {
   const [text, setText] = useState("");
