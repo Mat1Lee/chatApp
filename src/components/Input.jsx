@@ -106,7 +106,7 @@ const Input = () => {
 
   return (
     <div className="input">
-      <Input
+      <input
         type="text"
         placeholder="Type something..."
         onChange={(e) => setText(e.target?.value)}
