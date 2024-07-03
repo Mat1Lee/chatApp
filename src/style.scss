@@ -141,8 +141,8 @@ body::-webkit-scrollbar-track {
 
     .sidebar {
       flex: 1;
-      background: rgba(24, 24, 16, 0.2);
-      border-radius: 2em;
+      // background: rgba(24, 24, 16, 0.2);
+      // border-radius: 2em;
       backdrop-filter: blur(15px);
       border: 2px solid rgba(255, 255, 255, 0.05);
       background-clip: padding-box;
@@ -197,7 +197,8 @@ body::-webkit-scrollbar-track {
         }
       }
       .search {
-        border-bottom: 1px solid rgb(60, 44, 44);
+        // border-bottom: 1px solid rgb(60, 44, 44);
+        padding: 10px;
 
         .searchForm {
           padding: 10px;
@@ -260,7 +261,7 @@ body::-webkit-scrollbar-track {
 
       .chatInfo {
         height: 50px;
-    
+        border-bottom: 1px solid blanchedalmond;
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -297,7 +298,7 @@ body::-webkit-scrollbar-track {
       .messages {
   
         padding: 10px;
-        height: calc(100% - 120px);
+        height: calc(100% - 100px);
         overflow-y: auto;
 
         .message {
@@ -359,7 +360,7 @@ body::-webkit-scrollbar-track {
       .input {
         height: 50px;
         background-color: rgb(243, 240, 240);
-        border-radius: 12px 0px 0 12px; 
+        border-radius: 10px; 
         padding: 10px;
         display: flex;
         align-items: center;
@@ -392,7 +393,8 @@ body::-webkit-scrollbar-track {
 
           button {
             border: none;
-            padding: 10px 15px;
+            border-radius: 10px;
+            padding: 5px 15px;
             color: white;
             background-color: #8da4f1;
             cursor: pointer;
