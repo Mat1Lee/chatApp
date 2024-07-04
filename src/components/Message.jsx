@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useRef } from "react";
 import { AuthContext } from "../context/AuthContext";
 import { ChatContext } from "../context/ChatContext";
-import { formatRelative } from "date-fns";
+// import { formatRelative } from "date-fns";
 import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
 import { deleteDoc, doc } from "firebase/firestore";
 import { db } from "../firebase";
@@ -48,7 +48,7 @@ const Message = ({ message }) => {
             <p>{message.text} <h/>
               
             </p>
-            <span>{formatRelative(message.date, new Date())}</span>
+            {/* <span>{formatRelative(message.date, new Date())}</span> */}
            
          </div>
          <div className="text-message-info" style={{display:'flex',justifyContent:'space-between',gap:'10px'}}>

@@ -5,7 +5,7 @@ import { db } from "../firebase";
 import Message from "./Message";
 import { useChatMessages } from "../hook/message";
 import { AuthContext } from "../context/AuthContext";
-import { formatRelative } from "date-fns";
+// import { formatRelative } from "date-fns";
 import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
 
 const Messages = () => {
@@ -81,7 +81,7 @@ const Messages = () => {
               ) : (
                 <p>{message.text}</p>
               )}
-              <span style={{ fontSize: '14px',float: 'right' }}>{formatRelative(message.date, new Date())}</span>
+              {/* <span style={{ fontSize: '14px',float: 'right' }}>{formatRelative(message.date, new Date())}</span> */}
             </div>
             <div className="text-message-info" style={{ display: 'flex', justifyContent: 'space-between', gap: '10px' }}>
               <span>
