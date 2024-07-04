@@ -6,6 +6,7 @@ module.exports = {
   output: {
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'dist'),
+    publicPath: '/', // Thêm dòng này
   },
   module: {
     rules: [
@@ -34,8 +35,9 @@ module.exports = {
     extensions: ['.js', '.jsx'],
   },
   devServer: {
-    static: path.join(__dirname, 'dist'), // cập nhật từ contentBase thành static trong Webpack 5
+    static: path.join(__dirname, 'dist'), // Cập nhật từ contentBase thành static trong Webpack 5
     compress: true,
     port: 9000,
+    historyApiFallback: true, // Thêm dòng này
   },
 };
