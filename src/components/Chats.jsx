@@ -24,7 +24,7 @@ const Chats = () => {
             use.push({ ...doc.data(), id: doc.id });
           });
 
-          console.log(use);
+          // console.log(use);
           const newUse = use.filter((item) => item.uid !== currentUser.uid);
           console.log(newUse, 'newUser');
           setChats(newUse);

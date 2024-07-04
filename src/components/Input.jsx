@@ -83,7 +83,7 @@ const Input = () => {
           await setDoc(doc(db, "chats", data?.chatId), {
             messages: arrayUnion({
               id: uuid(),
-              text,
+              text:text.trim(),
               senderId: currentUser.uid,
               date: formatDate(Timestamp.now()),
               photoURL: currentUser.photoURL,
