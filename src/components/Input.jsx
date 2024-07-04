@@ -24,6 +24,7 @@ import { v4 as uuid } from "uuid";
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 // import formatRelative from "date-fns/esm/fp/formatRelative/index.js";
 import { formatDate } from "../helpers/index.js";
+import dayjs from "dayjs";
 const Input = () => {
   const [text, setText] = useState("");
   const [img, setImg] = useState(null);
@@ -44,6 +45,7 @@ const Input = () => {
 
   getChats();
   const handleSend = async () => {
+    const currentTime = dayjs().format('DD-MM-YYYY');
     if (text !== "") {
       if (img) {
         const storageRef = ref(storage, uuid());
@@ -60,7 +62,7 @@ const Input = () => {
                     id: uuid(),
                     text,
                     senderId: currentUser.uid,
-                    date: formatDate(Timestamp.now()),
+                    date: currentTime,
                     img: downloadURL,
                   }),
                 });
@@ -75,7 +77,7 @@ const Input = () => {
               id: uuid(),
               text: text.trim(),
               senderId: currentUser.uid,
-              date: formatDate(Timestamp.now()),
+              date: currentTime,
               photoURL: currentUser.photoURL,
             }),
           });
@@ -85,7 +87,7 @@ const Input = () => {
               id: uuid(),
               text:text.trim(),
               senderId: currentUser.uid,
-              date: formatDate(Timestamp.now()),
+              date: currentTime,
               photoURL: currentUser.photoURL,
             }),
           });
@@ -111,6 +113,12 @@ const Input = () => {
         placeholder="Type something..."
         onChange={(e) => setText(e.target?.value)}
         value={text}
+        onKeyPress={(e) => {
+          if (e.key === 'Enter') {
+            handleSend();
+          }
+        }}
+      
       />
       <div className="send">
         <FontAwesomeIcon className="icon-send" icon={faPaperclip} />

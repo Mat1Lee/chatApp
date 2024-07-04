@@ -7,7 +7,8 @@ import { useChatMessages } from "../hook/message";
 import { AuthContext } from "../context/AuthContext";
 // import { formatRelative } from "date-fns";
 import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
-
+import {formatDate} from '../helpers/index'
+import { message } from "antd";
 const Messages = () => {
   const [messages, setMessages] = useState([]);
   const { data } = useContext(ChatContext);
@@ -15,6 +16,7 @@ const Messages = () => {
   const { currentUser } = useContext(AuthContext);
   const { messageshook} = useChatMessages(data?.chatId);
   const [isEdit, setEdit] = useState({id: null, isEdit: false});
+  console.log(messages,'sdsd')
   useEffect(() => {
     const unSub = onSnapshot(
       doc(db, "chats", data?.chatId),
@@ -54,6 +56,7 @@ const Messages = () => {
   return (
     <div className="messages" >
       {messages.map((message, index) => (
+        console.log(message),
         <div
           className={`message ${message.senderId === currentUser.uid && "owner"}`}
           key={message.id}
@@ -81,7 +84,7 @@ const Messages = () => {
               ) : (
                 <p>{message.text}</p>
               )}
-              {/* <span style={{ fontSize: '14px',float: 'right' }}>{formatRelative(message.date, new Date())}</span> */}
+              <span style={{ fontSize: '14px',float: 'right' }}>{message.date}</span>
             </div>
             <div className="text-message-info" style={{ display: 'flex', justifyContent: 'space-between', gap: '10px' }}>
               <span>
@@ -110,7 +113,7 @@ const Messages = () => {
                 />
               </span>
             </div>
-            {message.img && <img src={message.img} alt="" />}
+            {message.img ? <img src={message.img} alt="" />:<span>{message.displayName}</span>}
           </div>
         </div>
       ))}
