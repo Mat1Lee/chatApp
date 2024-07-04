@@ -10,8 +10,6 @@ const Chats = () => {
   const navigate = useNavigate();
   const { currentUser } = useContext(AuthContext);
   const { dispatch, data } = useContext(ChatContext);
-  console.log(data, 'data');
-
   useEffect(() => {
     if (!currentUser) {
       navigate('/login');
@@ -26,14 +24,12 @@ const Chats = () => {
 
           // console.log(use);
           const newUse = use.filter((item) => item.uid !== currentUser.uid);
-          console.log(newUse, 'newUser');
           setChats(newUse);
         });
     }
   }, [currentUser, navigate]);
 
   const handleSelect = (u) => {
-    console.log(u);
     dispatch({ type: "CHANGE_USER", payload: u });
   };
 

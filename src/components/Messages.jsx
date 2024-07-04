@@ -15,17 +15,13 @@ const Messages = () => {
   const { currentUser } = useContext(AuthContext);
   const { messageshook} = useChatMessages(data?.chatId);
   const [isEdit, setEdit] = useState({id: null, isEdit: false});
-  console.log(data?.chatId);
-  // console.log(messageshook,'  messageshook')
   useEffect(() => {
     const unSub = onSnapshot(
       doc(db, "chats", data?.chatId),
       (doc) => {
         if (doc.exists()) {
-          console.log(doc.data().messages, 'day là màn hình');
           setMessages(doc.data().messages);
         } else {
-          console.log('Document does not exist');
           setMessages([]);
         }
       },
@@ -33,39 +29,27 @@ const Messages = () => {
         console.error('Error fetching document: ', error);
       }
     );
-
     return () => {
       unSub();
     };
   }, [data]);
   const updateMessage = async(value, messageId)=> {
-    // Access the document
     const docRef = doc(db, 'chats', data?.chatId);
-  
-    // Update the document by removing the specific message
     const messageIndex = messages.findIndex((message) => message.id === messageId);
     messages[messageIndex].text = value;
     await updateDoc(docRef, {
       messages,
     });
-  
-  
-    console.log(`Message with ID ${messageId} deleted successfully.`);
   }
   async function deleteMessageByIndex(documentId, index) {
     const docRef = doc(db, 'chats', documentId);
     if (index < 0 || index >= messages.length) {
-      console.log('Invalid index');
       return;
     }
-  
     messages.splice(index, 1);
-  
     await updateDoc(docRef, {
       messages,
     });
-  
-    console.log(`Message at index ${index} deleted successfully.`);
   }
   return (
     <div className="messages" >

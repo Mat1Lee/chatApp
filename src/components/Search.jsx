@@ -15,14 +15,12 @@ import { db } from "../firebase";
 import { AuthContext } from "../context/AuthContext";
 import { debounce } from "lodash";
 import { ChatContext } from "../context/ChatContext";
-
 const Search = () => {
   const [username, setUsername] = useState("");
   const [user, setUser] = useState(null);
   const [err, setErr] = useState(false);
   const { Search } = Input;
   const { currentUser } = useContext(AuthContext);
-
   const handleSearch = async () => {
     if (!username.trim()) {
       return;
@@ -32,7 +30,6 @@ const Search = () => {
       collection(db, "users"),
       where("displayName", "==", username)
     );
-
     try {
       const querySnapshot = await getDocs(q);
       if (querySnapshot.empty) {
@@ -45,10 +42,8 @@ const Search = () => {
           userData.push(doc.data());
         });
         setUser(userData.length > 0 ? userData[0] : null);
-        console.log(user, 'asdasd');
       }
     } catch (err) {
-      console.log(err);
       setErr(true);
     }
   };
@@ -59,7 +54,6 @@ const debounceSearch = debounce(handleSearch, 500);
 
   const { dispatch, data } = useContext(ChatContext);
   const handleSelect = (u) => {
-    console.log(u);
     dispatch({ type: "CHANGE_USER", payload: u });
   };
   return (

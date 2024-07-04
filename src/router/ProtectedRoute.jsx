@@ -6,7 +6,6 @@ export default function ProtectedRoute({children}) {
   
 const {currentuser} = useContext(AuthContext);
 if(!currentuser){
-  console.log('navigate')
   return <Navigate to='/login'/>
 }
 return children;

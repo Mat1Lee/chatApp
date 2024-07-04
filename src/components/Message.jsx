@@ -54,8 +54,6 @@ const Message = ({ message }) => {
          <div className="text-message-info" style={{display:'flex',justifyContent:'space-between',gap:'10px'}}>
             <span><EditOutlined  style={{color:'green'}}/></span>
             <span><DeleteOutlined color="red" onClick={() => {
-              // console.log(message.id);
-              // deleteMessageById(data.chatId,message.id);
             }} /></span>
             
             </div>
