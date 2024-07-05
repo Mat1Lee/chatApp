@@ -115,13 +115,14 @@ const Register = () => {
           <Form.Item
             name="file"
             valuePropName="file"
+            style={{ marginBottom: 0,textAlign:'center' }}
             getValueFromEvent={(e) => (e && e.fileList.length > 0 ? e.fileList[0] : null)}
           >
             <Upload maxCount={1} beforeUpload={() => false}>
               <Button icon={<UploadOutlined />}>Add an avatar</Button>
             </Upload>
           </Form.Item>
-          <Form.Item>
+          <Form.Item style={{ textAlign:'center' }}>
             <Button type="primary" htmlType="submit" loading={loading}>
               Sign up
             </Button>
