@@ -25,6 +25,7 @@ import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 // import formatRelative from "date-fns/esm/fp/formatRelative/index.js";
 import { formatDate } from "../helpers/index.js";
 import dayjs from "dayjs";
+import { capitalize } from "lodash";
 const Input = () => {
   const [text, setText] = useState("");
   const [img, setImg] = useState(null);
@@ -60,7 +61,7 @@ const Input = () => {
                 await updateDoc(doc(db, "chats", data?.chatId), {
                   messages: arrayUnion({
                     id: uuid(),
-                    text,
+                    text:capitalize(text).trim(),
                     senderId: currentUser.uid,
                     date: currentTime,
                     img: downloadURL,
@@ -75,7 +76,7 @@ const Input = () => {
           await updateDoc(doc(db, "chats", data?.chatId), {
             messages: arrayUnion({
               id: uuid(),
-              text: text.trim(),
+              text: capitalize(text).trim(),
               senderId: currentUser.uid,
               date: currentTime,
               photoURL: currentUser.photoURL,
@@ -85,7 +86,7 @@ const Input = () => {
           await setDoc(doc(db, "chats", data?.chatId), {
             messages: arrayUnion({
               id: uuid(),
-              text:text.trim(),
+              text:capitalize(text).trim(),
               senderId: currentUser.uid,
               date: currentTime,
               photoURL: currentUser.photoURL,
@@ -116,6 +117,7 @@ const Input = () => {
         onKeyPress={(e) => {
           if (e.key === 'Enter') {
             handleSend();
+            setText('');
           }
         }}
       

@@ -9,6 +9,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import Input from "./Input";
 import { ChatContext } from "../context/ChatContext";
+import { capitalize } from "lodash";
 const Chat = () => {
   const { data } = useContext(ChatContext);
   console.log(data);
@@ -20,13 +21,13 @@ const Chat = () => {
             className="userIn"
             style={{ display: "flex", alignItems: "center", gap: "10px" }}
           >
-            <img src={data?.user?.photoURL} alt="" />
-            <span>{data?.user?.displayName}</span>
+            {data?.user?.photoURL &&<img src={data?.user?.photoURL} alt="" />}
+            <span>{capitalize(data?.user?.displayName)}</span>
           </div>
         )}
       </div>
       <Messages />
-      <Input />
+      {data.chatId !== "null" &&( <Input />)}
     </div>
   );
 };

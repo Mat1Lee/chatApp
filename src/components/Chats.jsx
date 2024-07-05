@@ -4,6 +4,8 @@ import { AuthContext } from "../context/AuthContext";
 import { ChatContext } from "../context/ChatContext";
 import { db } from "../firebase";
 import { useNavigate } from "react-router-dom";
+import { toUpper } from "lodash";
+import { capitalize } from "lodash";
 
 const Chats = () => {
   const [chats, setChats] = useState([]);
@@ -43,19 +45,11 @@ const Chats = () => {
           key={index}
           onClick={() => handleSelect(chat)}
         >
-          <img className="userChatImg" src={chat.photoURL} alt="" />
+          {chat.photoURL &&<img className="userChatImg" src={chat.photoURL} alt="" />}
           <div className="userChatInfo">
             <span>
-            {/* <img
-              src={
-                message.senderId === currentUser.uid
-                  ? currentUser.photoURL
-                  : message.photoURL
-              }
-              alt=""
-            /> */}
             </span>
-            <span>{chat.displayName}</span>
+            <span>{capitalize(chat.displayName)}</span>
           </div>
         </div>
       ))}
