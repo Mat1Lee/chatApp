@@ -42,7 +42,7 @@ const Messages = () => {
     await updateDoc(docRef, {
       messages,
     });
-  }
+  };
   async function deleteMessageByIndex(documentId, index) {
     const docRef = doc(db, 'chats', documentId);
     if (index < 0 || index >= messages.length) {
@@ -52,7 +52,7 @@ const Messages = () => {
     await updateDoc(docRef, {
       messages,
     });
-  }
+  };
   return (
     <div className="messages" >
       {messages.map((message, index) => (
