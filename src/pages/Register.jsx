@@ -15,16 +15,13 @@ const Register = () => {
   const handleSubmit = async (values) => {
     setLoading(true);
     const { displayName, email, password, file } = values;
-
     try {
-      // Create user
       const res = await createUserWithEmailAndPassword(auth, email, password);
       const date = new Date().getTime();
       const storageRef = ref(storage, `${displayName + date}`);
 
       if (file) {
         const uploadTask = uploadBytesResumable(storageRef, file.file);
-
         uploadTask.on(
           'state_changed',
           null,
